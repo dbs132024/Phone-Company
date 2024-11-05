@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/HW4style.css" />
+    <title>Cell Phone Company Dashboard</title>
+    <style>
+      /* basic style */
+      html {
+        font-size: 100%;
+        line-height: 1.5rem;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        height: 100%;
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion) {
+      html {
+        scroll-behavior: initial;
+      }
+      }
+  
+      body {
+        margin: 0 auto;
+        padding: 0;
+        min-height: 100%;
+        max-width: 100%;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+        }
+      img,
+      video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+  
+      /* Top Nav Bar Style Start */
+  
+      #top-nav-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        line-height: 1rem;
+        overflow:hidden;
+        background-color: #fff;
+        z-index: 100;
+        height: 8rem;
+      }
+  
+      .logo a {
+        display: block;
+        text-decoration: none;
+        letter-spacing: 0.2rem;
+        padding: 0.8rem;
+        font-weight: 400;
+        font-size: 1.5rem;
+      }
+
+      .nav-menu {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        line-height: 1.5rem;
+      }
+
+      .nav-item {
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 33.3%;
+        text-align: center;
+      }
+  
+      .nav-menu a {
+        display: block;
+        text-decoration: none;
+        letter-spacing: 0.2rem;
+        padding: 0.8rem;
+        color: #000;
+        font-weight: 400;
+        letter-spacing: 0.1rem;
+        border-bottom: 0.5px solid #fff;
+        transition: all ease 0.1s;
+      }
+  
+      .nav-menu a:hover {
+        border-bottom: 0.5px solid #000;
+      }
+  
+      /* Top NavBar Only Styles */
+  
+      .top-nav{
+        background:none;
+        position:fixed;
+        top: 0;
+      }
+
+      /* Modern Browsers */
+  
+      @supports (position: sticky) {
+        .top-nav {
+          position: -webkit-sticky; /* Safari */
+          position: sticky;
+        }
+      }
+  
+      .top-nav .logo a,
+      .top-nav .nav-menu a {
+        color: #000;
+      }
+  
+      .top-nav .nav-menu a {
+        border-bottom: 1px solid rgba(0, 0, 0, 0);
+      }
+  
+      .top-nav .nav-menu a:hover {
+        border-bottom: 1px solid #000;
+      }
+
+      /* End of Top Nav Bar Styling */
+  
+      /* Header Hero Styles Start */
+      #hero-box-one {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-gap: 0px;
+        align-content: center;
+        justify-content: center;
+        align-items: start;
+        height: 100%;
+        width: 100%;
+      }
+
+      .hero-text-box {
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+        align-self: center;
+        text-align: center;
+        padding: 1rem;
+        color: gray;
+        z-index: 10;
+      }
+      #hero-heading {
+        color: gray;
+        font-size: 2rem;
+        line-height: 2rem;
+        letter-spacing: 0.05rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      #hero-text {
+        color: rgb(107, 95, 95);
+        font-size: 1rem;
+        margin-top: 0.05rem;
+      }
+
+      #customerInfo{
+        border-radius: 10px;
+        width: 100%;
+        max-width: 500px;
+        margin: 2rem auto;
+        border: 2px solid;
+        padding: 1.5rem;
+        label{
+          display:block;
+        }
+        label{
+          text-align: left;
+          text-transform: uppercase;
+          font-size: 13px;
+        }
+        input{
+          border-radius: 5px;
+          padding: .5rem;
+          margin: 1rem auto;
+          width: 100%;
+        }
+      }
+
+      #button-one{
+        width: 90%;
+        align-self: center;
+        border: 5px;
+        margin: 1rem;
+        text-transform: uppercase;
+        height: 5ex;
+        border: none;
+        border-radius: 5px;
+        background-color: gray;
+        padding: .5rem;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        transition: .3s background ease;
+        &:hover{
+          background-color: black;
+        }
+      }
+  
+      /*#button-one:hover {
+        background: rgba(179, 36, 36, 0.3);
+      }*/
+
+      /* Header Hero Styles End */
+
+      /* Tables Styles Start */
+
+      .customer-container {
+        display: flex;
+        justify-content:space-between;
+        margin: 20px;
+    }
+
+    .plan-container {
+      margin: 20px;
+    }
+
+    .Bank-container {
+      margin: 20px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 20%;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 20px;
+    }
+
+    /* Tables Styles End */
+  
+      /* Plans Info Style Start */
+  
+      .Plans {
+        margin: 1rem auto 0 auto;
+      }
+      .Plans h1 {
+        font-size: 2rem;
+        line-height: 2rem;
+        color: black;
+      }
+
+      /* Plans Info Style End */
+
+      /* About Style Start */
+  
+      .about-text {
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      #about-p{
+        font-size: 1rem;
+      }
+  
+      #about-header {
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+  
+      .section-stop {
+        scroll-margin-top: 6rem;
+      }
+
+      /* About Style End */
+
+      /* Footer Style Start */
+
+      #footer-nav{
+        background-color: gray;
+      }
+
+      .footer-logo a{
+        display: block;
+        text-decoration:none;
+        letter-spacing: 0.1rem;
+        padding: 0.8rem;
+        color: #9f2b2b;
+      }
+
+      /* Footer Style End */
+
+      /* Add Media Queries for Large Screens */
+  
+      @media (min-width: 600px) {
+        .hero-heading {
+          font-size: 4rem;
+          line-height: 4rem;
+        }
+        .hero-text {
+          font-size: 2rem;
+          line-height: 2rem;
+        }
+        .hero-text-box {
+          padding: 2rem;
+        }
+        .portfolio-contaier h1,
+        .about-text h1 {
+          font-size: 3rem;
+          line-height: 3rem;
+        }
+        .about-container {
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 1rem;
+        }
+        .about-text p {
+          font-size: 1.1rem;
+          line-height: 1.5rem;
+        }
+        .nav-bar {
+          line-height: 1.5rem;
+          padding: 0 4rem;
+        }
+        .na-menu {
+          padding: 0 1rem;
+        }
+        .nav-item {
+          flex: 1 1;
+          padding: 0 0.2rem;
+        }
+        .section-stop {
+          scroll-margin-top: 9rem;
+        }
+      }
+  
+      @media (min-width: 920px) {
+        .hero-heading {
+          font-size: 4rem;
+          line-height: 4rem;
+        }
+        .portfolio-contaier,
+        .about-container {
+          max-width: 1400px;
+        }
+        .portfolio-contaier h1,
+        .about-text h1 {
+          font-size: 4rem;
+          line-height: 4rem;
+        }
+        .about-text p {
+          font-size: 1.5rem;
+          line-height: 2rem;
+        }
+        .nav-bar {
+          justify-content: space-between;
+          padding: 2rem 5rem;
+          line-height: 1rem;
+          height: 8rem;
+        }
+        .nav-menu {
+          width: auto;
+          justify-self: end;
+        }
+        .nav-item {
+          padding: 0 0.5rem;
+        }
+        .top-nav {
+          width: 100%;
+        }
+      }
+    </style>
+    <script>
+      // CRUD operations for Customers
+
+      async function fetchCustomers() {
+            const response = await fetch('http://localhost:3000/customers');
+            const customers = await response.json();
+            const table = document.getElementById('customerTable');
+            table.innerHTML = '';
+            customers.forEach(customer => {
+                const row = `<tr><td>${customer.customer_id}</td>
+                  <td>${customer.name}</td>
+                  <td>${customer.email}</td>
+                  <td>${customer.phone_number}</td>
+                  <td>${customer.address}</td>
+                  <td>${customer.plan_type}</td>
+                  <td>${customer.created_at}</td></tr>`;
+                table.innerHTML += row;
+            });
+        }
+
+        async function addCustomer() {
+            const name = document.getElementById('customerInfo').value;
+            await fetch('http://localhost:3000/customers', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name })
+            });
+            document.getElementById('customerName').value = ''; // Clear input
+            fetchCustomers();
+            //fetchBankAccounts(); // Refresh enrollments to reflect any new students
+        }
+
+        async function updateCustomer() {
+            const id = document.getElementById('customerIdUpdate').value;
+            const name = document.getElementById('newCustomerName').value;
+            await fetch(`http://localhost:3000/customers/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name })
+            });
+            fetchCustomers();
+            //fetchEnrollments(); // Refresh enrollments to reflect any updated student name
+        }
+
+        async function deleteCustomer() {
+            const id = document.getElementById('studentIdDelete').value;
+            await fetch(`http://localhost:3000/customers/${id}`, { method: 'DELETE' });
+            fetchCustomers();
+            //fetchEnrollments(); // Refresh enrollments after deleting a student
+        }
+
+        // CRUD operations for Plans
+
+        async function fetchPlans() {
+            const response = await fetch('http://localhost:3000/plans');
+            const plans = await response.json();
+            const table = document.getElementById('planTable');
+            table.innerHTML = '';
+            plans.forEach(plan => {
+                const row = `<tr><td>${plan.plan_id}</td>
+                  <td>${plan.plan_name}</td>
+                  <td>${plan.plan_type}</td>
+                  <td>${plan.data_limit}</td>
+                  <td>${plan.call_limit}</td>
+                  <td>${plan.price}</td></tr>`;
+                table.innerHTML += row;
+            });
+        }
+
+        async function addPlan() {
+            const name = document.getElementById('planName').value;
+            await fetch('http://localhost:3000/plans', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name })
+            });
+            document.getElementById('planName').value = ''; // Clear input
+            fetchPlans();
+            //fetchEnrollments(); // Refresh enrollments to reflect any new courses
+        }
+
+        async function updatePlan() {
+            const id = document.getElementById('planIdUpdate').value;
+            const name = document.getElementById('newPlanName').value;
+            await fetch(`http://localhost:3000/plans/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name })
+            });
+            fetchPlans();
+            //fetchEnrollments(); // Refresh enrollments to reflect any updated course name
+        }
+
+        async function deletePlan() {
+            const id = document.getElementById('planIdDelete').value;
+            await fetch(`http://localhost:3000/plans/${id}`, { method: 'DELETE' });
+            fetchPlans();
+            //fetchEnrollments(); // Refresh enrollments after deleting a course
+        }
+
+        // Fetch and display enrollments with student ID and enrollment date
+        async function fetchBankAccounts() {
+            const response = await fetch('http://localhost:3000/bankaccounts');
+            const bankaccounts = await response.json();
+            const table = document.getElementById('bankaccountTable');
+            table.innerHTML = '';
+            bankaccounts.forEach(bankaccount => {
+                const row = `<tr>
+                                <td>${bankaccount.account_id}</td>
+                                <td>${bankaccount.customer_id}</td>
+                                <td>${bankaccount.bank_name}</td>
+                                <td>${bankaccount.account_number}</td>
+                                <td>${bankaccount.card_number}</td>
+                                <td>${bankaccount.card_expiry}</td>
+                             </tr>`;
+                table.innerHTML += row;
+            });
+        }
+
+        // Enroll a student in multiple courses (transactional)
+        async function enrollStudent() {
+            const studentId = document.getElementById('studentIdEnroll').value;
+            const courseIds = document.getElementById('courseIdsEnroll').value.split(',').map(Number);
+            
+            await fetch('http://localhost:3000/enroll', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ studentId, courseIds })
+            });
+
+            fetchEnrollments(); // Refresh enrollments to reflect the new enrollments
+        }
+
+        // Load data when the page loads
+        window.onload = function() {
+            fetchCustomers();
+            fetchPlans();
+            fetchBankAccounts();
+        };
+   </script>
+
+  </head>
+
+  <body>
+
+    <!-- Begin Top Nav -->
+    <nav id="top-nav-bar" class="nav-bar top-nav">
+      <h1 class="logo"><a href="index.html">Cell Phone Company</a></h1>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="#plans">Plans</a></li>
+        <li class="nav-item"><a href="#shared plans">Shared Plans</a></li>
+        <li class="nav-item"><a href="upgrade">Upgrade</a></li>
+        <li class="nav-item"><a href="#addaline">Add a Line</a></li>
+        <li class="nav-item"><a href="#about">About </a> </li>
+      </ul>
+    </nav>
+    <!-- End Top Nav -->
+
+    <!-- Begin Header -->
+    <header id="hero-box-one"class="hero-box">
+      <section class="hero-text-box">
+        <h1 id="hero-heading">Welcome to Cell Phone Company</h1>
+      </section>
+    </header>
+    <!-- End Hero Header -->
+
+    <h1>Cell Phone Company Management Dashboard</h1>
+
+  <div class="table-container">
+    <div>
+        <!-- Customer List Table -->
+        <div>
+            <h2>Customer List</h2>
+            <table>
+                <thead>
+                    <tr><th>ID</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone Number</th>
+                      <th>Address</th>
+                      <th>Plan Type</th>
+                      <th>Created Date</th></tr>
+                </thead>
+                <tbody id="customerTable"></tbody>
+            </table>
+        </div>
+    </div> 
+
+        <!-- Plan List Table -->
+        <div>
+            <h2>Plan List</h2>
+            <table>
+                <thead>
+                    <tr><th>Plan ID</th>
+                      <th>Plan Name</th>
+                      <th>Plan Type</th>
+                      <th>Data Limit</th>
+                      <th>Call Limit</th>
+                      <th>Price</th></tr>
+                </thead>
+                <tbody id="planTable"></tbody>
+            </table>
+        </div>
+
+        <!-- Bank Account List Table -->
+        <div>
+            <h2>Bank Account List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account ID</th>
+                        <th>Customer ID</th>
+                        <th>Bank Name</th>
+                        <th>Account Number</th>
+                        <th>Card Number</th>
+                        <th>Card Expiry</th>
+                    </tr>
+                </thead>
+                <tbody id="bankaccountTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Customer CRUD Forms -->
+    <div class="form-container">
+        <h2>Add Customer</h2>
+        <form id="customerInfo" class ="submit-form" action="" method="POST">
+          <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name"id="name" placeholder="Enter your name here" required>
+          </div>
+          <div>
+            <label for="address">Address:</label>
+            <input type="text" address="address" id="address" placeholder="Address" required>
+          </div>
+          <div>
+            <label for="email">Email:</label>
+            <input type="email" email="email" id="email" placeholder="example@gmail.com" required>
+          </div>
+          <div>
+            <label for="Phone">Phone Number:</label>
+            <input type="tel" PhoneNumber ="Phone" id="Phone" placeholder="Enter phone number">
+          </div>
+          <div>
+            Choose Plan Type:
+            <div style="white-space:nowrap;">
+              <label for="postpaid">Post-paid</label>
+              <input type="radio" name="plantype" id="postpaid" value="postpaid">
+              <label for="prepaid">Pre-paid</label>
+              <input type="radio" name="plantype" id="prepaid" value="prepaid">
+            </div>
+          </div>
+          <button id="button-one" onclick="addCustomer()" type="submit" value="send">Add Customer</button>
+        </form>
+
+        <h2>Update Customer</h2>
+        <input type="number" id="customerIdUpdate" placeholder="Customer ID">
+        <input type="text" id="newCustomerName" placeholder="New Name">
+        <button onclick="updateCustomer()">Update Customer</button>
+
+        <h2>Delete Customer</h2>
+        <input type="number" id="customerIdDelete" placeholder="Customer ID">
+        <button onclick="deleteCustomer()">Delete Customer</button>
+    </div>
+
+    <!-- Course CRUD Forms -->
+    <div class="form-container">
+        <h2>Add Plan</h2>
+        <input type="text" id="planName" placeholder="Plan Name">
+        <button onclick="addPlan()">Add Plan</button>
+
+        <h2>Update Plan</h2>
+        <input type="number" id="planIdUpdate" placeholder="Plan ID">
+        <input type="text" id="newPlanName" placeholder="New Plan Name">
+        <button onclick="updatePlan()">Update Plan</button>
+
+        <h2>Delete Plan</h2>
+        <input type="number" id="planIdDelete" placeholder="Plan ID">
+        <button onclick="deletePlan()">Delete Plan</button>
+    </div>
+
+    <!-- Enrollment Form (Transaction) -->
+    <div class="form-container">
+        <h2>Add Bank Account</h2>
+        <input type="number" id="studentIdEnroll" placeholder="Student ID">
+        <input type="text" id="courseIdsEnroll" placeholder="Course IDs (comma-separated)">
+        <button onclick="enrollStudent()">Enroll</button>
+    </div>
+
+    <!-- Begin Footer -->
+    <footer id="footer-nav">
+      <nav class="footer-bar">
+        <h1 class="footer-logo"><a href="index.html">Cell Phone Company</a></h1>
+      </nav>
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Javascript-->
+
+    <script>
+      window.onscroll = function () {
+        scrollFunction();
+      };
+      function scrollFunction() {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          document.getElementById("top-nav-bar").style.background = "white";
+        } else {
+          document.getElementById("top-nav-bar").style.background = "none";
+        }
+      }
+    </script>
+
+    <script>
+      src = "js/glightbox.min.js";
+    </script>
+    <script type="text/javascript">
+      const lightbox = GLightbox({ loop: true });
+    </script>
+    <!--End Javascript-->
+    
+  </body>
+</html>
+<!DOCTYPE html>
