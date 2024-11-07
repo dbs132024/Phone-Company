@@ -42,22 +42,20 @@
       /* Top Nav Bar Style Start */
   
       #top-nav-bar {
-        display: flex;
+        display:flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        line-height: 1rem;
+        line-height: .5rem;
         overflow:hidden;
         background-color: #fff;
         z-index: 100;
-        height: 8rem;
+        height: 10rem;
       }
   
       .logo a {
-        display: block;
         text-decoration: none;
         letter-spacing: 0.2rem;
-        padding: 0.8rem;
         font-weight: 400;
         font-size: 1.5rem;
       }
@@ -66,7 +64,7 @@
         list-style: none;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content:space-around;
         align-items: center;
         padding: 0;
         margin: 0;
@@ -81,10 +79,8 @@
       }
   
       .nav-menu a {
-        display: block;
         text-decoration: none;
         letter-spacing: 0.2rem;
-        padding: 0.8rem;
         color: #000;
         font-weight: 400;
         letter-spacing: 0.1rem;
@@ -216,10 +212,17 @@
 
       /* Tables Styles Start */
 
-      .customer-container {
-        display: flex;
-        justify-content:space-between;
-        margin: 20px;
+    #bankaccountTable {
+      width: 50%;
+      height: 50%;
+    }
+
+    .customer-container {
+      display: flex;
+      justify-content:space-between;
+      margin: 20px;
+      width: 50%;
+      height: 50%;
     }
 
     .plan-container {
@@ -382,30 +385,37 @@
           width: 100%;
         }
       }
+      #account-info {
+      border: 2px solid #ddd;
+      padding: 1rem;
+      margin: 20px 0;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      } 
     </style>
     <script>
       // CRUD operations for Customers
 
       async function fetchCustomers() {
-            const response = await fetch('http://localhost:3000/customers');
-            const customers = await response.json();
+            const response = await fetch('http://localhost:3000/customer');
+            const customer = await response.json();
             const table = document.getElementById('customerTable');
             table.innerHTML = '';
-            customers.forEach(customer => {
-                const row = `<tr><td>${customer.customer_id}</td>
-                  <td>${customer.name}</td>
-                  <td>${customer.email}</td>
-                  <td>${customer.phone_number}</td>
-                  <td>${customer.address}</td>
-                  <td>${customer.plan_type}</td>
-                  <td>${customer.created_at}</td></tr>`;
+            customer.forEach(customers => {
+                const row = `<tr><td>${customers.customer_id}</td>
+                  <td>${customers.name}</td>
+                  <td>${customers.email}</td>
+                  <td>${customers.phone_number}</td>
+                  <td>${customers.address}</td>
+                  <td>${customers.plan_type}</td>
+                  <td>${customers.created_at}</td></tr>`;
                 table.innerHTML += row;
             });
         }
 
         async function addCustomer() {
             const name = document.getElementById('customerInfo').value;
-            await fetch('http://localhost:3000/customers', {
+            await fetch('http://localhost:3000/customer', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name })
@@ -418,102 +428,87 @@
         async function updateCustomer() {
             const id = document.getElementById('customerIdUpdate').value;
             const name = document.getElementById('newCustomerName').value;
-            await fetch(`http://localhost:3000/customers/${id}`, {
+            await fetch(`http://localhost:3000/customer/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name })
             });
             fetchCustomers();
-            //fetchEnrollments(); // Refresh enrollments to reflect any updated student name
+            fetchBankAccounts(); // Refresh bankaccount to reflect any updated customer name
         }
 
         async function deleteCustomer() {
-            const id = document.getElementById('studentIdDelete').value;
-            await fetch(`http://localhost:3000/customers/${id}`, { method: 'DELETE' });
+            const id = document.getElementById('customerIdDelete').value;
+            await fetch(`http://localhost:3000/customer/${id}`, { method: 'DELETE' });
             fetchCustomers();
-            //fetchEnrollments(); // Refresh enrollments after deleting a student
+            fetchBankAccounts(); // Refresh bankaccount after deleting a customer
         }
 
         // CRUD operations for Plans
 
         async function fetchPlans() {
-            const response = await fetch('http://localhost:3000/plans');
-            const plans = await response.json();
+            const response = await fetch('http://localhost:3000/phoneplan');
+            const phoneplan = await response.json();
             const table = document.getElementById('planTable');
             table.innerHTML = '';
-            plans.forEach(plan => {
+            phoneplan.forEach(plan => {
                 const row = `<tr><td>${plan.plan_id}</td>
                   <td>${plan.plan_name}</td>
                   <td>${plan.plan_type}</td>
                   <td>${plan.data_limit}</td>
                   <td>${plan.call_limit}</td>
-                  <td>${plan.price}</td></tr>`;
+                  <td>${plan.price}</td>
+                  <td>${plan.cost_per_minute}</td>
+                  <td>${plan.cost_per_mb}</td></tr>`;
                 table.innerHTML += row;
             });
         }
 
         async function addPlan() {
             const name = document.getElementById('planName').value;
-            await fetch('http://localhost:3000/plans', {
+            await fetch('http://localhost:3000/phoneplan', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name })
             });
             document.getElementById('planName').value = ''; // Clear input
             fetchPlans();
-            //fetchEnrollments(); // Refresh enrollments to reflect any new courses
         }
 
         async function updatePlan() {
             const id = document.getElementById('planIdUpdate').value;
             const name = document.getElementById('newPlanName').value;
-            await fetch(`http://localhost:3000/plans/${id}`, {
+            await fetch(`http://localhost:3000/phoneplan/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name })
             });
             fetchPlans();
-            //fetchEnrollments(); // Refresh enrollments to reflect any updated course name
         }
 
         async function deletePlan() {
             const id = document.getElementById('planIdDelete').value;
-            await fetch(`http://localhost:3000/plans/${id}`, { method: 'DELETE' });
+            await fetch(`http://localhost:3000/phoneplan/${id}`, { method: 'DELETE' });
             fetchPlans();
-            //fetchEnrollments(); // Refresh enrollments after deleting a course
         }
 
-        // Fetch and display enrollments with student ID and enrollment date
+        // Fetch and display bankaccounts
         async function fetchBankAccounts() {
-            const response = await fetch('http://localhost:3000/bankaccounts');
-            const bankaccounts = await response.json();
+            const response = await fetch('http://localhost:3000/bankaccount');
+            const bankaccount = await response.json();
             const table = document.getElementById('bankaccountTable');
             table.innerHTML = '';
-            bankaccounts.forEach(bankaccount => {
+            bankaccount.forEach(bankaccounts => {
                 const row = `<tr>
-                                <td>${bankaccount.account_id}</td>
-                                <td>${bankaccount.customer_id}</td>
-                                <td>${bankaccount.bank_name}</td>
-                                <td>${bankaccount.account_number}</td>
-                                <td>${bankaccount.card_number}</td>
-                                <td>${bankaccount.card_expiry}</td>
+                                <td>${bankaccounts.bank_account_id}</td>
+                                <td>${bankaccounts.customer_id}</td>
+                                <td>${bankaccounts.balance}</td>
+                                <td>${bankaccounts.bank_name}</td>
+                                <td>${bankaccounts.card_number}</td>
+                                <td>${bankaccounts.card_expiry}</td>
                              </tr>`;
                 table.innerHTML += row;
             });
-        }
-
-        // Enroll a student in multiple courses (transactional)
-        async function enrollStudent() {
-            const studentId = document.getElementById('studentIdEnroll').value;
-            const courseIds = document.getElementById('courseIdsEnroll').value.split(',').map(Number);
-            
-            await fetch('http://localhost:3000/enroll', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ studentId, courseIds })
-            });
-
-            fetchEnrollments(); // Refresh enrollments to reflect the new enrollments
         }
 
         // Load data when the page loads
@@ -530,12 +525,12 @@
 
     <!-- Begin Top Nav -->
     <nav id="top-nav-bar" class="nav-bar top-nav">
-      <h1 class="logo"><a href="index.html">Cell Phone Company</a></h1>
+      <h1 class="logo"><a href="index.html">DBS13 Cell Phone Company</a></h1>
       <ul class="nav-menu">
         <li class="nav-item"><a href="#plans">Plans</a></li>
-        <li class="nav-item"><a href="#shared plans">Shared Plans</a></li>
-        <li class="nav-item"><a href="upgrade">Upgrade</a></li>
-        <li class="nav-item"><a href="#addaline">Add a Line</a></li>
+        <li class="nav-item"><a href="#billing">Billing</a></li>
+        <li class="nav-item"><a href="payments">Payments</a></li>
+        <li class="nav-item"><a href="#become">Become a Customer</a></li>
         <li class="nav-item"><a href="#about">About </a> </li>
       </ul>
     </nav>
@@ -544,12 +539,12 @@
     <!-- Begin Header -->
     <header id="hero-box-one"class="hero-box">
       <section class="hero-text-box">
-        <h1 id="hero-heading">Welcome to Cell Phone Company</h1>
+        <h1 id="hero-heading">Welcome to DBS13 Cell Phone Company</h1>
       </section>
     </header>
     <!-- End Hero Header -->
 
-    <h1>Cell Phone Company Management Dashboard</h1>
+    <h1>DBS13 Phone Company Management Dashboard</h1>
 
   <div class="table-container">
     <div>
@@ -581,7 +576,9 @@
                       <th>Plan Type</th>
                       <th>Data Limit</th>
                       <th>Call Limit</th>
-                      <th>Price</th></tr>
+                      <th>Price</th>
+                      <th>Cost Per Minute</th>
+                      <th>Cost Per MB</th></tr>
                 </thead>
                 <tbody id="planTable"></tbody>
             </table>
@@ -593,10 +590,10 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Account ID</th>
+                        <th>Bank Account ID</th>
                         <th>Customer ID</th>
+                        <th>Balance</th>
                         <th>Bank Name</th>
-                        <th>Account Number</th>
                         <th>Card Number</th>
                         <th>Card Expiry</th>
                     </tr>
@@ -628,7 +625,7 @@
           </div>
           <div>
             Choose Plan Type:
-            <div style="white-space:nowrap;">
+            <div>
               <label for="postpaid">Post-paid</label>
               <input type="radio" name="plantype" id="postpaid" value="postpaid">
               <label for="prepaid">Pre-paid</label>
@@ -648,7 +645,31 @@
         <button onclick="deleteCustomer()">Delete Customer</button>
     </div>
 
-    <!-- Course CRUD Forms -->
+    <!--Payment Form -->
+    <div class="form-container">
+      <h2>Make a Payment</h2>
+      <form id="paymentForm">
+          <input type="number" id="paymentCustomerId" placeholder="Customer ID" required />
+          <input type="number" id="billingId" placeholder="Billing ID" required />
+          <input type="number" id="paymentAmount" placeholder="Amount" step="0.01" required />
+          <input type="text" id="paymentCardNumber" placeholder="Card Number (16 digits)" minlength="16" maxlength="16" required />
+          <button type="submit">Submit Payment</button>
+      </form>
+
+  </div>
+
+    <!-- Account Information Section -->
+    <div class="form-container">
+      <h2>Get Account Information</h2>
+        <input type="number" id="customerIdInfo" placeholder="Enter Customer ID" required />
+        <button onclick="getAccountInfo()">Show Account Information</button>
+
+      <div id="account-info">
+      <!-- Account information will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Phone Plans CRUD Forms -->
     <div class="form-container">
         <h2>Add Plan</h2>
         <input type="text" id="planName" placeholder="Plan Name">
@@ -663,22 +684,6 @@
         <input type="number" id="planIdDelete" placeholder="Plan ID">
         <button onclick="deletePlan()">Delete Plan</button>
     </div>
-
-    <!-- Enrollment Form (Transaction) -->
-    <div class="form-container">
-        <h2>Add Bank Account</h2>
-        <input type="number" id="studentIdEnroll" placeholder="Student ID">
-        <input type="text" id="courseIdsEnroll" placeholder="Course IDs (comma-separated)">
-        <button onclick="enrollStudent()">Enroll</button>
-    </div>
-
-    <!-- Begin Footer -->
-    <footer id="footer-nav">
-      <nav class="footer-bar">
-        <h1 class="footer-logo"><a href="index.html">Cell Phone Company</a></h1>
-      </nav>
-    </footer>
-    <!-- End Footer -->
 
     <!-- Javascript-->
 
@@ -705,7 +710,25 @@
       const lightbox = GLightbox({ loop: true });
     </script>
     <!--End Javascript-->
-    
+
+    <div class="form-container">
+      <h2>Get Account Information</h2>
+      <input type="number" id="customerIdInfo" placeholder="Enter Customer ID" required />
+      <button onclick="getAccountInfo()">Show Account Information</button>
+  
+      <div id="account-info">
+        <!-- Account information will be dynamically inserted here -->
+      </div>
+    </div>
+    <script src="app.js"></script>
+
+    <!-- Begin Footer -->
+    <footer id="footer-nav">
+      <nav class="footer-bar">
+        <h1 class="footer-logo"><a href="index.html">Cell Phone Company</a></h1>
+      </nav>
+    </footer>
+    <!-- End Footer -->
   </body>
 </html>
 <!DOCTYPE html>
