@@ -1,4 +1,22 @@
 // Fetch and display customers
+async function fetchData() {
+  const token = localStorage.getItem('token');
+
+  const response = await fetch('http://localhost:3000/protected-data', {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data);
+  } else {
+    console.log('Failed to fetch data.');
+  }
+}
+
 async function fetchCustomers() {
     try {
         const response = await fetch('http://localhost:3000/customer');
@@ -175,38 +193,6 @@ async function fetchBankAccounts() {
     }
 }
 
-// Make a payment (transaction)
-async function makePayment() {
-    const customerId = document.getElementById('paymentCustomerId').value;
-    const billingId = document.getElementById('billingId').value;
-    const amount = parseFloat(document.getElementById('paymentAmount').value);
-    const cardNumber = document.getElementById('paymentCardNumber').value;
-
-    if (!customerId || !billingId || !amount || cardNumber.length !== 16) {
-        alert('Please fill in all fields correctly.');
-        return;
-    }
-
-    try {
-        const response = await fetch('http://localhost:3000/make-payment', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ customerId, billingId, amount, cardNumber })
-        });
-        const result = await response.json();
-
-        if (response.ok) {
-            alert('Payment successful!');
-            // Optionally refresh bank accounts to reflect new balance
-            fetchBankAccounts();
-        } else {
-            alert('Payment failed: ' + result.message);
-        }
-    } catch (error) {
-        console.error('Error making payment:', error);
-        alert('Error processing payment. Please try again.');
-    }
-}
 
 // Fetch and display account information
 async function getAccountInfo() {

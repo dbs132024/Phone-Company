@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Cell Phone Company</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Begin Top Nav -->
+    <nav id="top-nav-bar" class="nav-bar top-nav">
+        <h1 class="logo"><a href="index.html">DBS13 Cell Phone Company</a></h1>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="phone-plan.html">Phone Plan</a></li>
+            <li class="nav-item"><a href="payments.html">Make a Payment</a></li>
+            <li class="nav-item"><a href="call-records.html">Call Records</a></li>
+            <li class="nav-item"><a href="#become">Become a Customer</a></li>
+            <li class="nav-item"><a href="#about">About</a></li>
+        </ul>
+    </nav>
+    <!-- End Top Nav -->
+    <!-- Dashboard Content -->
+    <header id="hero-box-one" class="hero-box">
+        <section class="hero-text-box">
+            <h1 id="hero-heading">Welcome to DBS13 Cell Phone Company</h1>
+        </section>
+    </header>
+
+    <h1>DBS13 Phone Company Management Dashboard</h1>
+
+    <!-- Account Information Section -->
+    <div class="form-container">
+        <h2>Get Account Information</h2>
+        <input type="number" id="customerIdInfo" placeholder="Enter Customer ID" required />
+        <button onclick="getAccountInfo()">Show Account Information</button>
+        <div id="account-info">
+            <!-- Account information will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer-nav">
+        <nav class="footer-bar">
+            <h1 class="footer-logo"><a href="index.html">Cell Phone Company</a></h1>
+        </nav>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
