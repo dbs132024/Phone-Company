@@ -1,0 +1,99 @@
+/* General Page Styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to bottom right, #506ec2, #c9b0e3);
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Form Container Styling */
+#registerForm {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Label Styling */
+#registerForm label {
+    text-align: left;
+    margin: 0.5rem 0 0.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Input Field Styling */
+#registerForm input[type="text"],
+#registerForm input[type="password"] {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Button Styling */
+#registerForm button {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 30px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#registerForm button:hover {
+    background-color: #45a049;
+}
+
+/* Message Styling */
+#registerMessage {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #6F6F6F; /* Red for errors, overridden dynamically for success */
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    #registerForm {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    #registerForm input[type="text"],
+    #registerForm input[type="password"] {
+        font-size: 0.9rem;
+    }
+
+    #registerForm button {
+        font-size: 0.9rem;
+    }
+}
