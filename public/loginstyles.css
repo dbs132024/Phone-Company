@@ -5,7 +5,7 @@ body {
     align-items: center;
     min-height: 100vh;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-image: linear-gradient(to bottom right,#506ec2, #c9b0e3);
     margin: 0;
 }
 
@@ -33,17 +33,19 @@ body {
     .login-container input[type="text"],
     .login-container input[type="password"] {
         width: 100%;
-        padding: 0.5rem;
+        padding: 1rem;
         margin-bottom: 1rem;
         border: 1px solid #ccc;
-        border-radius: 4px;
+        border-radius: 30px;
+        box-sizing: border-box;
     }
 
     .login-container button {
         width: 100%;
-        padding: 0.75rem;
+        padding: 1rem;
+        margin-top: 5%;
         border: none;
-        border-radius: 4px;
+        border-radius: 30px;
         background-color: #4CAF50;
         color: #fff;
         font-size: 1rem;
