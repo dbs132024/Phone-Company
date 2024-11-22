@@ -1,21 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;600&display=swap');
 
-/* General Body Styling */
-body {
-    font-family: 'Host Grotesk', sans-serif;
-    background: linear-gradient(135deg, #dfefff, #a8d0e6); 
-    color: #333;
+/* Reset and Base Styling */
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+    font-family: 'Host Grotesk', sans-serif;
+    color: #333;
 }
 
-/* Navigation Bar */
-#top-nav-bar {
-    background-color: #ffffff;
-    border-bottom: 3px solid #76a9ea;
-    padding: 20px 0;
+body {
+    display: flex;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom right, #506ec2, #c9b0e3);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Vertical Sidebar */
+#side-nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25%; /* Sidebar width */
+    height: 100%; /* Full height */
+    background-color: #ffffff; /* Background color */
+    border-right: 2px solid #e0e0e0; /* Divider line */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space between nav links and footer (theme switcher) */
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Logo Styling */
+.logo-container {
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.logo img {
+    max-width: 100%; /* Ensures the logo fits within its container */
+    height: auto;
+    display: block;
+    object-fit: contain;
 }
 
 .logo a {
@@ -23,48 +52,72 @@ body {
     font-weight: 600;
     color: #4676d7;
     text-decoration: none;
-    transition: all 0.3s;
+    transition: color 0.3s ease;
 }
 
-    .logo a:hover {
-        color: #76a9ea;
-        text-shadow: 1px 1px 2px #fff;
-    }
+.logo a:hover {
+    color: #76a9ea;
+    text-shadow: 1px 1px 2px #fff;
+}
 
+/* Navigation Menu */
 .nav-menu {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    flex-direction: column;
+    gap: 15px; /* Add spacing between menu items */
 }
 
-.nav-item {
-    margin: 0 15px;
-    list-style: none;
-}
-
-.nav-menu a {
-    color: #333;
-    font-weight: 600;
+.nav-item a {
     text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    background-color: #ffffff;
-    border: 2px solid #4676d7;
-    transition: all 0.3s;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-    .nav-menu a:hover {
-        background-color: #4676d7;
-        color: #ffffff;
-    }
+.nav-item a:hover,
+.nav-item.active a {
+    background-color: #4676d7;
+    color: #ffffff;
+}
+
+/* Theme Switcher */
+.theme-switcher {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: auto; /* Push to the bottom */
+    padding-top: 20px;
+    color: #333;
+}
+
+.theme-switcher input[type="checkbox"] {
+    margin-left: 10px;
+}
+
+/* Main Content */
+main {
+    margin-left: 25%; /* Sidebar width */
+    width: 75%; /* Remaining content width */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in width calculation */
+    background-color: #f7f9fc; /* Optional: Background for main content */
+    min-height: 100vh;
+}
 
 /* Hero Section */
 .hero-box {
-    text-align: center;
     padding: 50px 20px;
     background: #eaf4ff;
     color: #333;
+    text-align: center;
     border-bottom: 3px solid #4676d7;
+    box-sizing: border-box;
 }
 
 .hero-text-box h1 {
@@ -79,7 +132,7 @@ body {
     margin: 10px 0;
 }
 
-/* Dashboard Styling */
+/* Dashboard Section */
 .dashboard-container {
     max-width: 800px;
     margin: 20px auto;
@@ -91,30 +144,12 @@ body {
     text-align: center;
 }
 
-    .dashboard-container h2 {
-        color: #4676d7;
-        margin-bottom: 20px;
-    }
-
-/* Buttons */
-button {
-    background: #4676d7;
-    color: white;
-    font-size: 1rem;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: all 0.3s;
+.dashboard-container h2 {
+    color: #4676d7;
+    margin-bottom: 20px;
 }
 
-    button:hover {
-        background: #76a9ea;
-        transform: translateY(-3px);
-    }
-
-/* Form Container */
+/* Form Section */
 .form-container {
     max-width: 600px;
     margin: 20px auto;
@@ -134,11 +169,29 @@ input {
     font-size: 1rem;
 }
 
-    input:focus {
-        outline: none;
-        border-color: #4676d7;
-        box-shadow: 0 0 5px rgba(70, 118, 215, 0.5);
-    }
+input:focus {
+    outline: none;
+    border-color: #4676d7;
+    box-shadow: 0 0 5px rgba(70, 118, 215, 0.5);
+}
+
+/* Buttons */
+button {
+    background: #4676d7;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #76a9ea;
+    transform: translateY(-3px);
+}
 
 /* About Section */
 .about-section {
@@ -165,16 +218,17 @@ input {
     margin: 10px;
 }
 
-/* Footer */
-#footer-nav {
-    background: #dfefff;
-    text-align: center;
-    padding: 20px;
-    border-top: 3px solid #4676d7;
-}
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #side-nav-bar {
+        width: 100%; /* Sidebar takes full width on smaller screens */
+        height: auto; /* Adjust height */
+        border-right: none; /* Remove border */
+        border-bottom: 2px solid #e0e0e0; /* Add bottom divider */
+    }
 
-.footer-logo a {
-    font-size: 1.2rem;
-    color: #4676d7;
-    text-decoration: none;
+    main {
+        margin-left: 0; /* Remove margin for main content */
+        width: 100%; /* Main content takes full width */
+    }
 }

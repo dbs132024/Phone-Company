@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions - DBS13 Cell Phone Company</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Vertical Navbar -->
+    <nav id="side-nav-bar">
+        <div class="logo-container">
+            <h1 class="logo">
+                <a href="index.html">
+                    <img src="/assets/images/logo.png" alt="DBS13 Logo">
+                </a>
+            </h1>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html">Home</a></li>
+            <li class="nav-item"><a href="phone-plan.html">Phone Plan</a></li>
+            <li class="nav-item"><a href="payments.html">Make a Payment</a></li>
+            <li class="nav-item"><a href="transactions.html">Transactions</a></li>
+            <li class="nav-item"><a href="call-records.html">Call Records</a></li>
+            <li class="nav-item"><a href="about.html">About</a></li>
+        </ul>
+        <div class="theme-switcher">
+            <span>Light</span>
+            <input type="checkbox" id="theme-toggle">
+            <label for="theme-toggle">Dark</label>
+        </div>
+    </nav>
+    
+
+    <!-- Main Content -->
+    <main>
+        <header class="hero-box">
+            <section class="hero-text-box">
+                <h1>Transactions</h1>
+                <p>View your payment history and billing details below.</p>
+            </section>
+        </header>
+
+        <!-- Transactions Section -->
+        <section class="dashboard-container">
+            <h2>Payment History</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Transaction ID</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-table-body">
+                    <!-- Transaction rows will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        // Fetch transactions from the backend and populate the table
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('http://localhost:3000/transactions'); // Replace with your API endpoint
+                const transactions = await response.json();
+
+                const tableBody = document.getElementById('transactions-table-body');
+
+                if (transactions.length > 0) {
+                    transactions.forEach(transaction => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${transaction.date}</td>
+                            <td>${transaction.transactionId}</td>
+                            <td>$${transaction.amount.toFixed(2)}</td>
+                            <td>${transaction.status}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    tableBody.innerHTML = `<tr><td colspan="4">No transactions found.</td></tr>`;
+                }
+            } catch (error) {
+                console.error('Error fetching transactions:', error);
+                const tableBody = document.getElementById('transactions-table-body');
+                tableBody.innerHTML = `<tr><td colspan="4">Unable to load transactions. Please try again later.</td></tr>`;
+            }
+        });
+    </script>
+</body>
+</html>
