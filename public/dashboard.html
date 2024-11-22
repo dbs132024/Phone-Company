@@ -3,49 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Cell Phone Company</title>
+    <title>Dashboard - DBS13 Cell Phone Company</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html'; // Redirect if no token is found
+            }
+        });
+    </script>
 </head>
 <body>
-    <!-- Begin Top Nav -->
-    <nav id="top-nav-bar" class="nav-bar top-nav">
-        <h1 class="logo"><a href="index.html">DBS13 Cell Phone Company</a></h1>
+    <!-- Begin Vertical Sidebar -->
+    <nav id="side-nav-bar">
+        <div class="logo-container">
+            <h1 class="logo">
+                <a href="index.html">
+                    <img src="/assets/images/logo.png" alt="DBS13 Logo">
+                </a>
+            </h1>
+        </div>
         <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html">Home</a></li>
             <li class="nav-item"><a href="phone-plan.html">Phone Plan</a></li>
             <li class="nav-item"><a href="payments.html">Make a Payment</a></li>
+            <li class="nav-item"><a href="transactions.html">Transactions</a></li>
             <li class="nav-item"><a href="call-records.html">Call Records</a></li>
-            <li class="nav-item"><a href="#become">Become a Customer</a></li>
-            <li class="nav-item"><a href="#about">About</a></li>
+            <li class="nav-item"><a href="about.html">About</a></li>
         </ul>
-    </nav>
-    <!-- End Top Nav -->
-    <!-- Dashboard Content -->
-    <header id="hero-box-one" class="hero-box">
-        <section class="hero-text-box">
-            <h1 id="hero-heading">Welcome to DBS13 Cell Phone Company</h1>
-        </section>
-    </header>
-
-    <h1>DBS13 Phone Company Management Dashboard</h1>
-
-    <!-- Account Information Section -->
-    <div class="form-container">
-        <h2>Get Account Information</h2>
-        <input type="number" id="customerIdInfo" placeholder="Enter Customer ID" required />
-        <button onclick="getAccountInfo()">Show Account Information</button>
-        <div id="account-info">
-            <!-- Account information will be dynamically inserted here -->
+        <div class="theme-switcher">
+            <span>Light</span>
+            <input type="checkbox" id="theme-toggle">
+            <label for="theme-toggle">Dark</label>
         </div>
-    </div>
+    </nav>
+    <!-- End Vertical Sidebar -->
 
-    <!-- Footer -->
-    <footer id="footer-nav">
-        <nav class="footer-bar">
-            <h1 class="footer-logo"><a href="index.html">Cell Phone Company</a></h1>
-        </nav>
-    </footer>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <header id="hero-box-one" class="hero-box">
+            <section class="hero-text-box">
+                <h1 id="hero-heading">Welcome to Your Dashboard</h1>
+            </section>
+        </header>
 
-    <!-- JavaScript -->
-    <script src="app.js"></script>
+        <!-- Dashboard Overview Section -->
+        <section class="dashboard-container">
+            <h2>Overview</h2>
+            <p>Here you can manage your phone plan, view transactions, call records, and more.</p>
+        </section>
+
+        <!-- Customer Information Section -->
+        <section class="form-container">
+            <h2>Customer Information</h2>
+            <form id="customerInfoForm">
+                <input type="number" id="customerIdInput" placeholder="Enter Customer ID" required>
+                <button type="submit">Fetch Customer Info</button>
+            </form>
+            <div id="customerInfo">
+                <!-- Customer information will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Recent Transactions Section -->
+        <section class="dashboard-container">
+            <h2>Recent Transactions</h2>
+            <table id="transactionsTable">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Transactions data will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Call Records Section -->
+        <section class="dashboard-container">
+            <h2>Recent Call Records</h2>
+            <table id="callRecordsTable">
+                <thead>
+                    <tr>
+                        <th>Call ID</th>
+                        <th>Duration</th>
+                        <th>Cost</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Call records will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        async function fetchCustomerInfo() {
+            const customerId = document.getElementById('customerIdInput').value;
+            try {
+                const response = await fetch(`http://localhost:3000/customer-info/${customerId}`);
+                const data = await response.json();
+                if (response.ok) {
+                    const customerInfoDiv = document.getElementById('customerInfo');
+                    customerInfoDiv.innerHTML = `
+                        <h3>Customer Details</h3>
+                        <p>Name: ${data.name}</p>
+                        <p>Email: ${data.email}</p>
+                        <p>Phone Number: ${data.phone_number}</p>
+                        <p>Address: ${data.address}</p>
+                        <p>Plan: ${data.plan_type}</p>
+                    `;
+                } else {
+                    alert('Customer not found.');
+                }
+            } catch (error) {
+                console.error('Error fetching customer information:', error);
+            }
+        }
+
+        async function fetchTransactions() {
+            try {
+                const response = await fetch('http://localhost:3000/transactions');
+                const transactions = await response.json();
+                const tableBody = document.querySelector('#transactionsTable tbody');
+                tableBody.innerHTML = '';
+                transactions.forEach(transaction => {
+                    const row = `
+                        <tr>
+                            <td>${transaction.transaction_id}</td>
+                            <td>${transaction.date}</td>
+                            <td>$${transaction.amount}</td>
+                            <td>${transaction.status}</td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error('Error fetching transactions:', error);
+            }
+        }
+
+        async function fetchCallRecords() {
+            try {
+                const response = await fetch('http://localhost:3000/call-records');
+                const records = await response.json();
+                const tableBody = document.querySelector('#callRecordsTable tbody');
+                tableBody.innerHTML = '';
+                records.forEach(record => {
+                    const row = `
+                        <tr>
+                            <td>${record.call_id}</td>
+                            <td>${record.duration} mins</td>
+                            <td>$${record.cost}</td>
+                            <td>${record.date}</td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error('Error fetching call records:', error);
+            }
+        }
+
+        // Event Listeners
+        document.getElementById('customerInfoForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            fetchCustomerInfo();
+        });
+
+        // Fetch data on page load
+        window.onload = function () {
+            fetchTransactions();
+            fetchCallRecords();
+        };
+    </script>
 </body>
 </html>

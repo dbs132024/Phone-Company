@@ -1,22 +1,34 @@
-// Fetch and display customers
-async function fetchData() {
-  const token = localStorage.getItem('token');
-
-  const response = await fetch('http://localhost:3000/protected-data', {
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    }
-  });
-
-  if (response.ok) {
-    const data = await response.json();
-    console.log(data);
-  } else {
-    console.log('Failed to fetch data.');
-  }
+// Sidebar toggle functionality
+function openNav() {
+    document.querySelector('.sidebar').classList.add('expanded');
+    document.querySelector('#main').classList.add('expanded');
 }
 
+function closeNav() {
+    document.querySelector('.sidebar').classList.remove('expanded');
+    document.querySelector('#main').classList.remove('expanded');
+}
+
+// Fetch and display customers
+async function fetchData() {
+    const token = localStorage.getItem('token');
+
+    const response = await fetch('http://localhost:3000/protected-data', {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+    } else {
+        console.log('Failed to fetch data.');
+    }
+}
+
+// Fetch customers
 async function fetchCustomers() {
     try {
         const response = await fetch('http://localhost:3000/customer');
@@ -44,7 +56,7 @@ async function fetchCustomers() {
 
 // Add a new customer
 async function addCustomer(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
 
     const name = document.getElementById('name').value;
     const address = document.getElementById('address').value;
@@ -58,7 +70,6 @@ async function addCustomer(event) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, address, email, phone_number, plan_type })
         });
-        // Clear input fields
         document.getElementById('customerInfo').reset();
         fetchCustomers();
     } catch (error) {
@@ -192,7 +203,6 @@ async function fetchBankAccounts() {
         console.error('Error fetching bank accounts:', error);
     }
 }
-
 
 // Fetch and display account information
 async function getAccountInfo() {
