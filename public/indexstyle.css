@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('/assets/images/indexbg2.png'); /* Corrected syntax */
+    background-size: cover; /* Ensures the image covers the full viewport */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    height: 100vh; /* Makes the body span the full viewport height */
+    font-family: 'Montserrat', sans-serif; /* Use the imported font */
+    display: flex;
+    flex-direction: column; /* Stack navbar and main content vertically */
+    text-align: left;
+    color: #ffffff; /* Adjust text color for visibility */
+}
+
+/* navbar style */
+nav {
+    width: 100%; /* Ensures navbar spans the full width */
+    position: fixed; /* Keeps navbar at the top of the screen */
+    top: 0;
+    z-index: 1000; /* Ensures it stays on top of other elements */
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between; /* Aligns logo and navbar items */
+    align-items: center; /* Centers content vertically */
+    padding: 10px 20px; /* Adds spacing inside the navbar */
+}
+
+.logo {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    padding-left: 10px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    display: flex; /* Ensures navbar items are in a row */
+    gap: 25px; /* Adds spacing between links */
+    font-size: 25px;
+}
+
+li {
+    display: inline; /* Ensures each item is inline */
+}
+
+li a {
+    display: block;
+    color: #C479AD;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+li a:hover {
+    color: #B0468F; /* Change the link color on hover */
+}
+
+/* Content below navbar */
+.title {
+    display: flex;
+    flex-direction: column; /* Stacks elements vertically */
+    align-items: flex-start; /* Aligns content to the left */
+    margin-top: 220px; /* Adds space below the navbar to prevent overlap */
+    padding-left: 20%; /* Adds spacing from the left edge */
+}
+
+.company-name {
+    font-size: 100px;
+    font-weight: 700;
+    line-height: 1; /* Adjust line spacing */
+    margin: 0; /* Removes default margin */
+    color: #ffffff; /* Text color */
+}
+
+.subheading {
+    font-size: 30px;
+    font-weight: 400; /* Makes the text thinner */
+    color: #ffffff; /* Subtle gray color */
+    margin-top: 20px; /* Adds space between title and subheading */
+    max-width: 600px; /* Optional: Limits the width of the subheading */
+}
+
+
+.get-started-link {
+    display: inline-block; /* Ensures the link behaves like a button */
+    margin-top: 40px; /* Adds spacing between the subheading and button */
+}
+
+.login-link{
+    color: #ffffff;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.get-started-button {
+    width: 200px; /* Adjust size of the button as needed */
+    height: auto; /* Maintains aspect ratio */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+    transition: transform 0.2s ease-in-out; /* Smooth animation */
+}
+
+.get-started-button:hover {
+    transform: scale(1.1); /* Slightly enlarges the button on hover */
+}

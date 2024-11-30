@@ -46,14 +46,14 @@ body {
         margin-top: 5%;
         border: none;
         border-radius: 30px;
-        background-color: #4CAF50;
+        background-color: #3B3B3B;
         color: #fff;
         font-size: 1rem;
         cursor: pointer;
     }
 
         .login-container button:hover {
-            background-color: #45a049;
+            background-color: #525252;
         }
 
 #loginMessage {

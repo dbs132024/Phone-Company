@@ -232,3 +232,51 @@ button:hover {
         width: 100%; /* Main content takes full width */
     }
 }
+
+.log-in-screen {
+    position: relative;
+    width: 640px;
+    height: 380px;
+    background-color: #ffffff;
+  }
+  
+  .log-in-screen .BG {
+    position: absolute;
+    width: 640px;
+    height: 380px;
+    top: -239px;
+    left: -1219px;
+  }
+  
+  .log-in-screen .overlap-group {
+    position: absolute;
+    width: 633px;
+    height: 380px;
+    top: 0;
+    left: 0;
+  }
+  
+  .log-in-screen .ellipse {
+    position: absolute;
+    width: 446px;
+    height: 380px;
+    top: 0;
+    left: 0;
+  }
+  
+  .log-in-screen .img {
+    width: 453px;
+    left: 93px;
+    position: absolute;
+    height: 380px;
+    top: 0;
+  }
+  
+  .log-in-screen .ellipse-2 {
+    width: 443px;
+    left: 190px;
+    position: absolute;
+    height: 380px;
+    top: 0;
+  }
+  
