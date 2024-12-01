@@ -392,6 +392,16 @@ app.post('/simulate', async (req, res) => {
     }
 });
 
+const { exec } = require('child_process');
 
 // Start the server
-app.listen(3000, () => console.log('Server is running on port 3000'));
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+
+    // Automatically open the browser based on the OS
+    const url = 'http://localhost:3000';
+    const startCommand = process.platform === 'darwin' ? 'open' :
+                         process.platform === 'win32' ? 'start' : 'xdg-open';
+    exec(`${startCommand} ${url}`);
+});
+
