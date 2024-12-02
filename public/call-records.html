@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Vertical Navbar -->
+    <nav id="side-nav-bar">
+        <div class="logo-container">
+            <h1 class="logo">
+                <a href="dashboard.html">
+                    <img src="/assets/images/logo.png" alt="DBS13 Logo">
+                </a>
+            </h1>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
+            <li class="nav-item"><a href="phone-plan.html">Phone Plan</a></li>
+            <li class="nav-item"><a href="payments.html">Make a Payment</a></li>
+            <li class="nav-item"><a href="transactions.html">Transactions</a></li>
+            <li class="nav-item"><a href="call-records.html" class="active">Call Records</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <header class="title">
+                <h1>Call Records</h1>
+                <p>View your call history and costs linked below.</p>
+        </header>
+        <div class="call_records-table-container">
+        <table class="call_records-table">
+            <thead>
+                <tr>
+                    <th>Call ID</th>
+                    <th>Date</th>
+                    <th>Duration</th>
+                    <th>Call Type</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#123467</td>
+                    <td>2024-12-15</td>
+                    <td>5 min</td>
+                    <td>Incoming</td>
+                    <td>$0.10</td>
+                </tr>
+                <tr>
+                    <td>#123456</td>
+                    <td>2024-12-13</td>
+                    <td>N/A</td>
+                    <td>Missed call</td>
+                    <td>$0</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <button class="load-more-btn">Load More</button>
+    </main>
+
+    <script src="call-records.js"></script>
+</body>
+</html>

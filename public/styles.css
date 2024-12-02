@@ -240,7 +240,9 @@ button:hover {
 }
 
 /* Table Styling */
-.transaction-table-container {
+.transaction-table-container,
+.call_records-table-container 
+{
     border: 2px solid #E5E5E5;
     border-radius: 16px; 
     margin-top: 40px;
@@ -251,21 +253,22 @@ button:hover {
 }
 
 
-.transaction-table {
+.transaction-table,
+.call_records-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 1.5rem;
     color:#999898;
 }
 
-.transaction-table th, 
-.transaction-table td {
+th, 
+td {
     text-align: left;
     padding: 12px;
 }
 
 
-.transaction-table thead th {
+thead th {
     background: #fff;
     color: #000000;
     font-size: 1rem;
@@ -274,23 +277,22 @@ button:hover {
 
 }
 
-.transaction-table tbody tr {
+tbody tr {
     border-bottom: 1px solid #D2D2D2;
 }
 
-.transaction-table tbody tr:last-child {
+tbody tr:last-child {
     border-bottom: none;
 }
 
-.transaction-table td {
+td {
     font-size: 1rem;
     font-weight: 400;
 
 }
 
-.transaction-table td:nth-child(4) {
+td:nth-child(4) {
     font-weight: 600;
-    color: #605BFF;
 }
 
 /* Load More Button */
