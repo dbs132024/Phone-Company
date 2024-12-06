@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/navbar.css">
     <script>
         window.addEventListener('DOMContentLoaded', function () {
             const token = localStorage.getItem('token');
@@ -15,93 +16,92 @@
     </script>
 </head>
 <body>
-    <!-- Begin Vertical Sidebar -->
     <nav id="side-nav-bar">
         <div class="logo-container">
             <h1 class="logo">
-                <a href="index.html">
+                <a href="dashboard.html">
                     <img src="/assets/images/logo.png" alt="DBS13 Logo">
                 </a>
             </h1>
         </div>
         <ul class="nav-menu">
-            <li class="nav-item"><a href="index.html">Home</a></li>
+            <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
             <li class="nav-item"><a href="phone-plan.html">Phone Plan</a></li>
             <li class="nav-item"><a href="payments.html">Make a Payment</a></li>
-            <li class="nav-item"><a href="transactions.html">Transactions</a></li>
+            <li class="nav-item"><a href="transactions.html" class="active">Transactions</a></li>
             <li class="nav-item"><a href="call-records.html">Call Records</a></li>
-            <li class="nav-item"><a href="about.html">About</a></li>
         </ul>
-        <div class="theme-switcher">
-            <span>Light</span>
-            <input type="checkbox" id="theme-toggle">
-            <label for="theme-toggle">Dark</label>
-        </div>
     </nav>
-    <!-- End Vertical Sidebar -->
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-        <header id="hero-box-one" class="hero-box">
-            <section class="hero-text-box">
-                <h1 id="hero-heading">Welcome to Your Dashboard</h1>
-            </section>
+        <header class="title">
+            <h1>Overview</h1>
+            <p>Manage your account, view call records, transactions, and more.</p>
         </header>
 
-        <!-- Dashboard Overview Section -->
-        <section class="dashboard-container">
-            <h2>Overview</h2>
-            <p>Here you can manage your phone plan, view transactions, call records, and more.</p>
-        </section>
-
-        <!-- Customer Information Section -->
-        <section class="form-container">
-            <h2>Customer Information</h2>
-            <form id="customerInfoForm">
-                <input type="number" id="customerIdInput" placeholder="Enter Customer ID" required>
-                <button type="submit">Fetch Customer Info</button>
-            </form>
-            <div id="customerInfo">
-                <!-- Customer information will be dynamically inserted here -->
-            </div>
-        </section>
-
-        <!-- Recent Transactions Section -->
-        <section class="dashboard-container">
-            <h2>Recent Transactions</h2>
-            <table id="transactionsTable">
+        <div class="transaction-table-container">
+            <h2>Transaction History</h2>
+            <table class="transaction-table">
                 <thead>
                     <tr>
                         <th>Transaction ID</th>
-                        <th>Date</th>
+                        <th>Date & Time</th>
                         <th>Amount</th>
-                        <th>Status</th>
+                        <th>Payment Status</th>
+                        <th>Payment Method</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Transactions data will be dynamically inserted here -->
+                    <tr>
+                        <td>#123466</td>
+                        <td>2024-12-15</td>
+                        <td>$65.99</td>
+                        <td>Pending</td>
+                        <td>Checking Account</td>
+                    </tr>
+                    <tr>
+                        <td>#123466</td>
+                        <td>2024-12-15</td>
+                        <td>$65.99</td>
+                        <td>Pending</td>
+                        <td>Checking Account</td>
+                    </tr>
                 </tbody>
             </table>
-        </section>
+            <button class="load-more-btn">Load More</button>
+            </div>
 
-        <!-- Call Records Section -->
-        <section class="dashboard-container">
-            <h2>Recent Call Records</h2>
-            <table id="callRecordsTable">
+        <div class="call_records-table-container">
+            <h2>Call Records</h2>
+            <table class="call_records-table">
                 <thead>
                     <tr>
                         <th>Call ID</th>
-                        <th>Duration</th>
-                        <th>Cost</th>
                         <th>Date</th>
+                        <th>Duration</th>
+                        <th>Call Type</th>
+                        <th>Cost</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Call records will be dynamically inserted here -->
+                    <tr>
+                        <td>#123467</td>
+                        <td>2024-12-15</td>
+                        <td>5 min</td>
+                        <td>Incoming</td>
+                        <td>$0.10</td>
+                    </tr>
+                    <tr>
+                        <td>#123456</td>
+                        <td>2024-12-13</td>
+                        <td>N/A</td>
+                        <td>Missed call</td>
+                        <td>$0</td>
+                    </tr>
                 </tbody>
             </table>
-        </section>
+            <button class="load-more-btn">Load More</button>
+        </div>
     </main>
 
     <script>
