@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transactions</title>
-    <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Vertical Navbar -->
@@ -13,7 +12,7 @@
         <div class="logo-container">
             <h1 class="logo">
                 <a href="dashboard.html">
-                    <img src="../assets/images/logo.png" alt="Logo">
+                    <img src="/assets/images/logo.png" alt="DBS13 Logo">
                 </a>
             </h1>
         </div>
@@ -21,41 +20,41 @@
             <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
             <li class="nav-item"><a href="phone-plan.html">Phone Plan</a></li>
             <li class="nav-item"><a href="payments.html">Make a Payment</a></li>
-            <li class="nav-item"><a href="transactions.html">Transactions</a></li>
-            <li class="nav-item"><a href="call-records.html" class="active">Call Records</a></li>
+            <li class="nav-item"><a href="transactions.html" class="active">Transactions</a></li>
+            <li class="nav-item"><a href="call-records.html">Call Records</a></li>
         </ul>
     </nav>
     
     <main>
         <header class="title">
-                <h1>Call Records</h1>
-                <p>View your call history and costs linked below.</p>
+                <h1>Transaction History</h1>
+                <p>View your payment history and billing details below.</p>
         </header>
-        <div class="call_records-table-container">
-        <table class="call_records-table">
+        <div class="transaction-table-container">
+        <table class="transaction-table">
             <thead>
                 <tr>
-                    <th>Call ID</th>
-                    <th>Date</th>
-                    <th>Duration</th>
-                    <th>Call Type</th>
-                    <th>Cost</th>
+                    <th>Transaction ID</th>
+                    <th>Date & Time</th>
+                    <th>Amount</th>
+                    <th>Payment Status</th>
+                    <th>Payment Method</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>#123467</td>
+                    <td>#123466</td>
                     <td>2024-12-15</td>
-                    <td>5 min</td>
-                    <td>Incoming</td>
-                    <td>$0.10</td>
+                    <td>$65.99</td>
+                    <td>Pending</td>
+                    <td>Checking Account</td>
                 </tr>
                 <tr>
-                    <td>#123456</td>
-                    <td>2024-12-13</td>
-                    <td>N/A</td>
-                    <td>Missed call</td>
-                    <td>$0</td>
+                    <td>#123466</td>
+                    <td>2024-12-15</td>
+                    <td>$65.99</td>
+                    <td>Pending</td>
+                    <td>Checking Account</td>
                 </tr>
             </tbody>
         </table>
@@ -63,6 +62,6 @@
         <button class="load-more-btn">Load More</button>
     </main>
 
-    <script src="../scripts/call-records.js"></script>
+    <script src="transactions.js"></script>
 </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="registerstyles.css">
+</head>
+<body>
+    <form id="registerForm">
+        <h1>Register</h1>
+        <label for="username">Username:</label>
+        <input type="text" id="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+
+        <label for="role">Role (optional):</label>
+        <input type="text" id="role" placeholder="customer or employee">
+
+        <button type="submit">REGISTER</button>
+        <p id="registerMessage">Don't have an account? <a href="login.html" style="color: #393939;">Login here</a></p>
+
+    </form>
+    <script src="register.js"></script>
+    
+</body>
+</html>

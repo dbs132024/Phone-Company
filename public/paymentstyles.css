@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;600&display=swap');
-
 /* General Reset */
 * {
     margin: 0;
@@ -9,23 +7,13 @@
 
 /* Body Styling */
 body {
-    font-family: 'Host Grotesk', sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #f3f7fa;
     color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-main {
-    margin-left: 17%; /* Match the sidebar width */
-    width: 83%; /* Take the remaining space */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full height of the viewport */
-    background-image: linear-gradient(to bottom right, #506ec2, #c9b0e3);
 }
 
 /* Container Styling */

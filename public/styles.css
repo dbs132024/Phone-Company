@@ -19,6 +19,20 @@ body {
     background-attachment: fixed;
 }
 
+/* Vertical Sidebar */
+#side-nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 17%; /* Sidebar width */
+    height: 100%; /* Full height */
+    background-color: #ffffff; /* Background color */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Space between nav links and footer (theme switcher) */
+    padding: 20px;
+}
+
 /* Logo Styling */
 .logo-container {
     text-align: center;
@@ -101,20 +115,33 @@ main {
     box-sizing: border-box;
 }
 
-h1 {
+.hero-text-box h1 {
     font-size: 2.5rem;
-    color: #333;
+    color: #4676d7;
     text-shadow: 2px 2px #ffffff;
     margin: 0;
-}
-
-h2 {
-    margin-left: 15px;
 }
 
 .hero-text-box p {
     font-size: 1.2rem;
     margin: 10px 0;
+}
+
+/* Dashboard Section */
+.dashboard-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 3px solid #4676d7;
+    text-align: center;
+}
+
+.dashboard-container h2 {
+    color: #4676d7;
+    margin-bottom: 20px;
 }
 
 /* Form Section */
@@ -238,7 +265,6 @@ th,
 td {
     text-align: left;
     padding: 12px;
-    padding-left: 3%;
 }
 
 

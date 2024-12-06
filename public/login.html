@@ -3,25 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="../styles/auth-styles.css">
+    <title>Login - Cell Phone Company</title>
+    <link rel="stylesheet" href="loginstyles.css">
 </head>
 <body>
-    <div class="logo-container">
-        <h1 class="logo">
-            <a href="index.html">
-                <img src="/assets/images/logo.png" alt="DBS13 Logo">
-            </a>
-        </h1>
-    </div>
-    <div class="auth-container">
-        <h1>Member Login</h1>
+
+    <!-- Login Form -->
+    <div class="login-container">
+        <h2>Member Login</h2>
         <form id="loginForm">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            <input type="text" id="username" name="username" required>
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <input type="password" id="password" name="password" required>
 
             <button type="submit">LOGIN</button>
         </form>
@@ -30,6 +25,6 @@
     </div>
 
     <!-- JavaScript for handling login -->
-    <script src="../scripts/login.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>

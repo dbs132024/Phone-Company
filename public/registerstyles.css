@@ -1,3 +1,4 @@
+/* General Page Styling */
 body {
     display: flex;
     justify-content: center;
@@ -10,28 +11,14 @@ body {
     padding: 0;
 }
 
-
 h1 {
-    text-align: center;
-    color: #333;
-}
-
-/* Logo Styling */
-.logo-container {
-    position: absolute; /* Take the logo out of the flow */
-    top: 25px; /* Position from the top */
-    left: 30px; /* Position from the left */
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     text-align: center;
 }
 
-.logo img {
-    max-width: 100%; /* Adjust the logo size */
-    height: auto;
-    display: block;
-    object-fit: contain;
-}
-
-.auth-container {
+/* Form Container Styling */
+#registerForm {
     background-color: #fff;
     padding: 2rem;
     border-radius: 8px;
@@ -43,15 +30,17 @@ h1 {
     align-items: stretch;
 }
 
-.auth-container label {
-    display: block;
+/* Label Styling */
+#registerForm label {
     text-align: left;
     margin: 0.5rem 0 0.25rem;
+    font-weight: bold;
     color: #333;
 }
 
-.auth-container input[type="text"],
-.auth-container input[type="password"] {
+/* Input Field Styling */
+#registerForm input[type="text"],
+#registerForm input[type="password"] {
     width: 100%;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -61,50 +50,50 @@ h1 {
     box-sizing: border-box;
 }
 
-.auth-container button {
+/* Button Styling */
+#registerForm button {
     width: 100%;
     padding: 1rem;
-    margin-top: 5%;
+    margin-top: 0.5rem;
     border: none;
     border-radius: 30px;
-    background-color: #3B3B3B;
-    color: #fff;
+    background-color: #4CAF50;
+    color: white;
     font-size: 1rem;
+    font-weight: normal;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.auth-container button:hover {
-    background-color: #525252; /* Hover effect */
+#registerForm button:hover {
+    background-color: #45a049;
 }
 
-.auth-container .message {
+/* Message Styling */
+#registerMessage {
     margin-top: 1rem;
     font-size: 1rem;
+    font-weight: normal;
+    color: #6F6F6F; /* Red for errors, overridden dynamically for success */
     text-align: center;
 }
 
-#registerMessage,
-#loginMessage {
-    color: red;
-    margin-top: 1rem;
-}
-
+/* Responsive Design */
 @media (max-width: 500px) {
-    .auth-container {
+    #registerForm {
         width: 90%;
     }
 
-    h1{
+    h1 {
         font-size: 1.5rem;
     }
 
-    .auth-container input[type="text"],
-    .auth-container input[type="password"] {
+    #registerForm input[type="text"],
+    #registerForm input[type="password"] {
         font-size: 0.9rem;
     }
 
-    .auth-container button {
+    #registerForm button {
         font-size: 0.9rem;
     }
 }
-
